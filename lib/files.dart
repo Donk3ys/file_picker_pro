@@ -450,23 +450,24 @@ class Files {
       Color cropperToolbarColor = Files.cropperToolbarColor,
       Color cropperToolbarWidgetsColor =
           Files.cropperToolbarWidgetsColor}) async {
-    return await ImageCropper().cropImage(
-        sourcePath: filePath,
-        aspectRatioPresets: cropOnlySquare
-            ? [CropAspectRatioPreset.square]
-            : [CropAspectRatioPreset.original, CropAspectRatioPreset.square],
-        uiSettings: [
-          AndroidUiSettings(
-              toolbarTitle: cropperToolbarTitle,
-              toolbarColor: cropperToolbarColor,
-              toolbarWidgetColor: cropperToolbarWidgetsColor,
-              initAspectRatio: cropOnlySquare
-                  ? CropAspectRatioPreset.square
-                  : CropAspectRatioPreset.original,
-              lockAspectRatio: cropOnlySquare ? true : false),
-          IOSUiSettings(
-              title: cropperToolbarTitle,
-              aspectRatioLockEnabled: cropOnlySquare ? true : false)
-        ]);
+    return await ImageCropper().cropImage(sourcePath: filePath, uiSettings: [
+      AndroidUiSettings(
+          aspectRatioPresets: cropOnlySquare
+              ? [CropAspectRatioPreset.square]
+              : [CropAspectRatioPreset.original, CropAspectRatioPreset.square],
+          toolbarTitle: cropperToolbarTitle,
+          toolbarColor: cropperToolbarColor,
+          toolbarWidgetColor: cropperToolbarWidgetsColor,
+          initAspectRatio: cropOnlySquare
+              ? CropAspectRatioPreset.square
+              : CropAspectRatioPreset.original,
+          lockAspectRatio: cropOnlySquare ? true : false),
+      IOSUiSettings(
+          aspectRatioPresets: cropOnlySquare
+              ? [CropAspectRatioPreset.square]
+              : [CropAspectRatioPreset.original, CropAspectRatioPreset.square],
+          title: cropperToolbarTitle,
+          aspectRatioLockEnabled: cropOnlySquare ? true : false)
+    ]);
   }
 }
